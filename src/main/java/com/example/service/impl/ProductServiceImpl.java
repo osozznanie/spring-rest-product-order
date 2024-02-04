@@ -102,7 +102,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     // Convert ProductDto to Product
-    @Override
     public Product convertToEntity(ProductDto productDto) {
         return Product.builder()
                 .name(productDto.getName())
@@ -112,20 +111,4 @@ public class ProductServiceImpl implements ProductService {
                 .build();
     }
 
-    // New method to update product quantity
-    public ProductDto updateProductQuantity(Long productId, int quantity) {
-        ProductDto productDto = findById(productId);
-
-        if (productDto == null) {
-            // Handle the case where the product is not found
-            // You might want to throw an exception or handle it based on your requirements
-            throw new RuntimeException("Product not found with ID: " + productId);
-        }
-
-        // Update the product quantity
-        productDto.setQuantity(productDto.getQuantity() - quantity);
-
-        // Save the updated product
-        return update(productDto, productId);
-    }
 }

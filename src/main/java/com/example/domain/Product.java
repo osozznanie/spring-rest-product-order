@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "products")
@@ -24,4 +23,12 @@ public class Product {
     private Double price;
     @Column(nullable = false)
     private Integer quantity;
+
+    public Product(Long id, String name, String description, Double price, Integer quantity) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.quantity = quantity;
+    }
 }

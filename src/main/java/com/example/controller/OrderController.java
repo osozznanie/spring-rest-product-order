@@ -18,11 +18,10 @@ public class OrderController {
     }
 
     // create order
-    @PostMapping("/{productId}")
-    public ResponseEntity<OrderDto> createOrder(@PathVariable(name = "productId") Long productId, @RequestBody OrderDto orderDto){
-        orderDto.setProductId(productId);
-        orderDto.setQuantity(orderDto.getQuantity());
-        return new ResponseEntity<>(orderService.createOrder(orderDto), HttpStatus.CREATED);
+    @PostMapping("/{id}")
+    public ResponseEntity<Void> createOrder(@PathVariable(name = "id") Long productId, @RequestBody OrderDto orderDto) {
+        orderService.createOrder(productId, orderDto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
 
